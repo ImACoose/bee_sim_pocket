@@ -20,18 +20,40 @@ class BeeScreen extends StatelessWidget {
       body: Center(
           child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.0),
-        child: ListView.builder(
-          itemCount: 10,
-          itemBuilder: (context, index) => Column(
-            children: [
-              BeeRow(
-                isEvenIndex: index == 0 || index % 2 == 0,
+        child: Column(
+          children: [
+            SizedBox(
+                height: 40,
+                child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: Rarity.values
+                        .map((rarity) => Row(children: [
+                              InfoChip(
+                                  label: rarity.name,
+                                  backgroundColor: Colors.white,
+                                  textColor: Colors.black),
+                              SizedBox(
+                                width: 8.0,
+                              )
+                            ]))
+                        .toList())),
+            Divider(),
+            Flexible(
+              child: ListView.builder(
+                itemCount: 10,
+                itemBuilder: (context, index) => Column(
+                  children: [
+                    BeeRow(
+                      isEvenIndex: index == 0 || index % 2 == 0,
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                  ],
+                ),
               ),
-              SizedBox(
-                height: 8,
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       )),
     );
@@ -100,18 +122,20 @@ class BeeRow extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          ClipRRect(
-                            child: ChoiceChip(
-                                visualDensity: VisualDensity(
-                                    vertical: VisualDensity.minimumDensity,
-                                    horizontal: VisualDensity.minimumDensity),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20)),
-                                onSelected: (val) {},
-                                labelPadding: EdgeInsets.zero,
-                                label: Text('Colorless'),
-                                selected: false),
-                          ),
+                          ChoiceChip(
+                              visualDensity: VisualDensity(
+                                  vertical: VisualDensity.minimumDensity,
+                                  horizontal: VisualDensity.minimumDensity),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              onSelected: (val) {},
+                              backgroundColor:
+                                  Theme.of(context).chipTheme.backgroundColor,
+                              labelPadding: EdgeInsets.zero,
+                              label: Text('Colorless',
+                                  style: TextStyle(
+                                      color: Theme.of(context).hintColor)),
+                              selected: false),
                           SizedBox(
                             width: 4.0,
                           ),
@@ -167,7 +191,7 @@ class InfoChip extends StatelessWidget {
         labelPadding: EdgeInsets.zero,
         label: Text(
           label,
-          style: TextStyle(color: ColorConstants.basicChipColours.text),
+          style: TextStyle(color: textColor),
         ),
         selected: false,
         onSelected: (val) {});
