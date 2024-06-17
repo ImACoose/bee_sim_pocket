@@ -1,6 +1,7 @@
 import 'package:bee_sim_pocket_info/constants.dart';
 import 'package:bee_sim_pocket_info/features/bees/models/bee_model.dart';
 import 'package:bee_sim_pocket_info/features/bees/screens/bee_description_screen.dart';
+import 'package:bee_sim_pocket_info/utils.dart';
 import 'package:flutter/material.dart';
 
 class BeeScreen extends StatelessWidget {
@@ -18,44 +19,54 @@ class BeeScreen extends StatelessWidget {
             icon: Icon(Icons.arrow_back)),
       ),
       body: Center(
-          child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           children: [
-            SizedBox(
-                height: 40,
-                child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: Rarity.values
-                        .map((rarity) => Row(children: [
-                              InfoChip(
-                                  label: rarity.name,
-                                  backgroundColor: Colors.white,
-                                  textColor: Colors.black),
-                              SizedBox(
-                                width: 8.0,
-                              )
-                            ]))
-                        .toList())),
-            Divider(),
+            Container(
+              color: Colors.white,
+              child: SizedBox(
+                  height: 40,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: Rarity.values
+                            .map((rarity) => Row(children: [
+                                  InfoChip(
+                                      label: rarity.name.capitalise(),
+                                      backgroundColor:
+                                          Theme.of(context).canvasColor,
+                                      textColor: Theme.of(context).hintColor!),
+                                  SizedBox(
+                                    width: 8.0,
+                                  )
+                                ]))
+                            .toList()),
+                  )),
+            ),
+            Divider(
+              height: 1,
+            ),
             Flexible(
-              child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) => Column(
-                  children: [
-                    BeeRow(
-                      isEvenIndex: index == 0 || index % 2 == 0,
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                  ],
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: ListView.builder(
+                  itemCount: 10,
+                  itemBuilder: (context, index) => Column(
+                    children: [
+                      BeeRow(
+                        isEvenIndex: index == 0 || index % 2 == 0,
+                      ),
+                      SizedBox(
+                        height: 8,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
           ],
         ),
-      )),
+      ),
     );
   }
 }
