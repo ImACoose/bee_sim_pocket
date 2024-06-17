@@ -21,6 +21,7 @@ Bee _$BeeFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Bee {
   String get name => throw _privateConstructorUsedError;
+  String get imagePathName => throw _privateConstructorUsedError;
   Rarity get rarity => throw _privateConstructorUsedError;
   BeeColor get beeColor => throw _privateConstructorUsedError;
 
@@ -34,7 +35,8 @@ abstract class $BeeCopyWith<$Res> {
   factory $BeeCopyWith(Bee value, $Res Function(Bee) then) =
       _$BeeCopyWithImpl<$Res, Bee>;
   @useResult
-  $Res call({String name, Rarity rarity, BeeColor beeColor});
+  $Res call(
+      {String name, String imagePathName, Rarity rarity, BeeColor beeColor});
 }
 
 /// @nodoc
@@ -50,6 +52,7 @@ class _$BeeCopyWithImpl<$Res, $Val extends Bee> implements $BeeCopyWith<$Res> {
   @override
   $Res call({
     Object? name = null,
+    Object? imagePathName = null,
     Object? rarity = null,
     Object? beeColor = null,
   }) {
@@ -57,6 +60,10 @@ class _$BeeCopyWithImpl<$Res, $Val extends Bee> implements $BeeCopyWith<$Res> {
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      imagePathName: null == imagePathName
+          ? _value.imagePathName
+          : imagePathName // ignore: cast_nullable_to_non_nullable
               as String,
       rarity: null == rarity
           ? _value.rarity
@@ -76,7 +83,8 @@ abstract class _$$BeeImplCopyWith<$Res> implements $BeeCopyWith<$Res> {
       __$$BeeImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, Rarity rarity, BeeColor beeColor});
+  $Res call(
+      {String name, String imagePathName, Rarity rarity, BeeColor beeColor});
 }
 
 /// @nodoc
@@ -89,6 +97,7 @@ class __$$BeeImplCopyWithImpl<$Res> extends _$BeeCopyWithImpl<$Res, _$BeeImpl>
   @override
   $Res call({
     Object? name = null,
+    Object? imagePathName = null,
     Object? rarity = null,
     Object? beeColor = null,
   }) {
@@ -96,6 +105,10 @@ class __$$BeeImplCopyWithImpl<$Res> extends _$BeeCopyWithImpl<$Res, _$BeeImpl>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      imagePathName: null == imagePathName
+          ? _value.imagePathName
+          : imagePathName // ignore: cast_nullable_to_non_nullable
               as String,
       rarity: null == rarity
           ? _value.rarity
@@ -112,7 +125,11 @@ class __$$BeeImplCopyWithImpl<$Res> extends _$BeeCopyWithImpl<$Res, _$BeeImpl>
 /// @nodoc
 @JsonSerializable()
 class _$BeeImpl implements _Bee {
-  _$BeeImpl({required this.name, required this.rarity, required this.beeColor});
+  _$BeeImpl(
+      {required this.name,
+      required this.imagePathName,
+      required this.rarity,
+      required this.beeColor});
 
   factory _$BeeImpl.fromJson(Map<String, dynamic> json) =>
       _$$BeeImplFromJson(json);
@@ -120,13 +137,15 @@ class _$BeeImpl implements _Bee {
   @override
   final String name;
   @override
+  final String imagePathName;
+  @override
   final Rarity rarity;
   @override
   final BeeColor beeColor;
 
   @override
   String toString() {
-    return 'Bee(name: $name, rarity: $rarity, beeColor: $beeColor)';
+    return 'Bee(name: $name, imagePathName: $imagePathName, rarity: $rarity, beeColor: $beeColor)';
   }
 
   @override
@@ -135,6 +154,8 @@ class _$BeeImpl implements _Bee {
         (other.runtimeType == runtimeType &&
             other is _$BeeImpl &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.imagePathName, imagePathName) ||
+                other.imagePathName == imagePathName) &&
             (identical(other.rarity, rarity) || other.rarity == rarity) &&
             (identical(other.beeColor, beeColor) ||
                 other.beeColor == beeColor));
@@ -142,7 +163,8 @@ class _$BeeImpl implements _Bee {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, rarity, beeColor);
+  int get hashCode =>
+      Object.hash(runtimeType, name, imagePathName, rarity, beeColor);
 
   @JsonKey(ignore: true)
   @override
@@ -161,6 +183,7 @@ class _$BeeImpl implements _Bee {
 abstract class _Bee implements Bee {
   factory _Bee(
       {required final String name,
+      required final String imagePathName,
       required final Rarity rarity,
       required final BeeColor beeColor}) = _$BeeImpl;
 
@@ -168,6 +191,8 @@ abstract class _Bee implements Bee {
 
   @override
   String get name;
+  @override
+  String get imagePathName;
   @override
   Rarity get rarity;
   @override

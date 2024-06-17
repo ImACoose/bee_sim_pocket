@@ -8,12 +8,14 @@ part of 'bee_model.dart';
 
 _$BeeImpl _$$BeeImplFromJson(Map<String, dynamic> json) => _$BeeImpl(
       name: json['name'] as String,
+      imagePathName: json['imagePathName'] as String,
       rarity: $enumDecode(_$RarityEnumMap, json['rarity']),
       beeColor: $enumDecode(_$BeeColorEnumMap, json['beeColor']),
     );
 
 Map<String, dynamic> _$$BeeImplToJson(_$BeeImpl instance) => <String, dynamic>{
       'name': instance.name,
+      'imagePathName': instance.imagePathName,
       'rarity': _$RarityEnumMap[instance.rarity]!,
       'beeColor': _$BeeColorEnumMap[instance.beeColor]!,
     };
